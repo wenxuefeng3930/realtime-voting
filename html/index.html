@@ -1,0 +1,32 @@
+    <html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+        $(function(){
+                var iosocket = io.connect();
+                iosocket.on('connect', function () {
+                       $('#incomingChatMessages').append($('<li>Connected</li>'));
+                iosocket.on('message', function(message) {
+                       $('#incomingChatMessages').append($('<li></li>').text(message));
+                });
+                iosocket.on('disconnect', function() {
+                       $('#incomingChatMessages').append('<li>Disconnected</li>');
+                 });
+           });
+          
+       });
+       </script>
+    </head>
+   <body>
+       Welcome!
+       <br />
+       <form action="/" method="post">
+       Please Enter your name
+              <input type="text" name="userName" placeholder="..." />
+              <br> 
+              <button class= "btnSubmit" type="submit">Submit</button>
+       </form>
+           
+    </body>
+    </html>
